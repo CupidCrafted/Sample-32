@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Request | CupidCrafted</title>
+    <style>
+        body { 
+            background: #fff5f7; 
+            font-family: 'Helvetica Neue', sans-serif; 
+            margin: 0; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            overflow: hidden; 
+            text-align: center; 
+            transition: background 0.5s ease, color 0.5s ease; 
+        }
+        .card { 
+            width: 90%; 
+            max-width: 400px; 
+            padding: 20px; 
+            z-index: 10;
+        }
+
+        /* Pure CSS Heart instead of Giphy */
+        .heart-container {
+            margin: 0 auto 30px;
+            position: relative;
+            width: 100px;
+            height: 90px;
+            animation: heartbeat 1.2s infinite;
+        }
+        .heart-container:before,
+        .heart-container:after {
+            position: absolute;
+            content: "";
+            left: 50px;
+            top: 0;
+            width: 50px;
+            height: 80px;
+            background: #e91e63;
+            border-radius: 50px 50px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .heart-container:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            20% { transform: scale(1.25); }
+            40% { transform: scale(1.1); }
+            60% { transform: scale(1.25); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 { color: #d32f2f; font-size: 1.8rem; margin-bottom: 5px; }
+        #message-area { color: #555; font-size: 1.1rem; min-height: 60px; line-height: 1.4; margin-bottom: 20px; }
+
+        .btn-container { display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; }
+        button { border: none; border-radius: 50px; cursor: pointer; transition: all 0.2s ease; font-weight: bold; font-family: inherit; }
+        
+        #yesBtn { 
+            background: #e91e63; 
+            color: white; 
+            padding: 15px 50px; 
+            font-size: 1.2rem; 
+            min-width: 200px; 
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3); 
+        }
+        #noBtn { background: #b0b0b0; color: white; padding: 10px 30px; font-size: 1rem; }
+
+        #success-img { 
+            width: 100%; 
+            max-width: 320px; 
+            border-radius: 15px; 
+            display: none; 
+            margin: 20px auto; 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3); 
+        }
+        
+        .back-link { margin-top: 25px; color: #888; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 5px; }
+        .brand-tag { margin-top: 30px; font-size: 0.7rem; color: #bbb; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
+        .brand-tag a { text-decoration: none; color: inherit; }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="content">
+        <div id="visual-element" class="heart-container"></div>
+        
+        <h1 id="title">Hello, Chelsea ❤️</h1>
+        <div id="message-area">
+            <p id="main-text">Will you be my Valentine?</p>
+        </div>
+
+        <div class="btn-container" id="btn-group">
+            <button id="yesBtn" onclick="celebrate()">YES! 😍</button>
+            <button id="noBtn" onclick="pleasePlea()">No 😢</button>
+        </div>
+
+        <img id="success-img" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80">
+
+        <a href="#" onclick="window.history.back()" id="backBtn" class="back-link">← Go Back</a>
+
+        <footer class="brand-tag">
+            <a href="#">Powered by CupidCrafted</a>
+        </footer>
+    </div>
+
+    <script>
+        let yesSize = 1;
+
+        function pleasePlea() {
+            const messageArea = document.getElementById('message-area');
+            const yesBtn = document.getElementById('yesBtn');
+
+            messageArea.innerHTML = `
+                <p style="color: #d32f2f; margin: 0;">Please baby, don't do that 🥺</p>
+                <p style="font-size: 0.9rem; color: #777; margin-top: 5px;">Could you please try again? ✨</p>
+            `;
+
+            yesSize += 0.3;
+            yesBtn.style.transform = `scale(${yesSize})`;
+        }
+
+        function celebrate() {
+            const title = document.getElementById('title');
+            const messageArea = document.getElementById('message-area');
+            const visual = document.getElementById('visual-element');
+            const successImg = document.getElementById('success-img');
+            const btnGroup = document.getElementById('btn-group');
+            const backBtn = document.getElementById('backBtn');
+
+            title.innerHTML = "Perfect Choice! ❤️";
+            title.style.color = "#FFD700"; 
+            messageArea.innerHTML = "I'm so glad you said yes. I can't wait to make our Valentine's Day special.";
+            messageArea.style.color = "white";
+            
+            visual.classList.add('hidden');
+            btnGroup.classList.add('hidden');
+            
+            successImg.style.display = 'block';
+            document.body.style.background = "#1a1a1a"; 
+            document.body.style.color = "white";
+            backBtn.style.color = "#ccc";
+        }
+    </script>
+</body>
+</html>
