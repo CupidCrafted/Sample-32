@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Request | CupidCrafted</title>
+    <style>
+        body { background: #fff5f7; font-family: 'Helvetica Neue', sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; text-align: center; transition: background 0.5s ease; }
+        .card { width: 90%; max-width: 400px; padding: 20px; transition: all 0.5s ease; }
+        
+        #main-gif { width: 180px; border-radius: 20px; margin-bottom: 20px; }
+        h1 { color: #d32f2f; font-size: 1.8rem; margin-bottom: 5px; }
+        #message-area { color: #555; font-size: 1.1rem; min-height: 60px; line-height: 1.4; margin-bottom: 20px; }
+
+        .btn-container { display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; }
+        button { border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-weight: bold; font-family: inherit; }
+        #yesBtn { background: #e91e63; color: white; padding: 15px 50px; font-size: 1.2rem; min-width: 200px; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3); }
+        #noBtn { background: #b0b0b0; color: white; padding: 10px 30px; font-size: 1rem; }
+
+        #success-img { width: 100%; max-width: 320px; border-radius: 15px; display: none; margin: 20px auto; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        
+        /* Back & Brand Styling */
+        .back-link { margin-top: 25px; color: #888; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 5px; transition: 0.3s; }
+        .back-link:hover { color: #e91e63; }
+        
+        .brand-tag { margin-top: 30px; font-size: 0.7rem; color: #bbb; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
+        .brand-tag a { text-decoration: none; color: inherit; }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="content">
+        <img id="main-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Jm09MQ/cLS1cfxvGOPVpf9g3y/giphy.gif">
+        
+        <h1 id="title">Hello, [Partner Name] ❤️</h1>
+        <div id="message-area">
+            <p id="main-text">Will you be my Valentine?</p>
+        </div>
+
+        <div class="btn-container" id="btn-group">
+            <button id="yesBtn" onclick="celebrate()">YES! 😍</button>
+            <button id="noBtn" onclick="pleasePlea()">No 😢</button>
+        </div>
+
+        <img id="success-img" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80">
+
+        <a href="javascript:history.back()" id="backBtn" class="back-link">← Go Back</a>
+
+        <footer class="brand-tag">
+            <a href="https://wa.me/233XXXXXXXXX">Powered by CupidCrafted</a>
+        </footer>
+    </div>
+
+    <script>
+        let yesSize = 1;
+
+        function pleasePlea() {
+            const messageArea = document.getElementById('message-area');
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+
+            messageArea.innerHTML = `
+                <p style="color: #d32f2f; margin: 0;">Please baby, don't do that 🥺</p>
+                <p style="font-size: 0.9rem; color: #777; margin-top: 5px;">Could you please try again and change your answer? ✨</p>
+            `;
+
+            yesSize += 0.3;
+            yesBtn.style.transform = `scale(${yesSize})`;
+            noBtn.style.opacity = "0.6";
+        }
+
+        function celebrate() {
+            const title = document.getElementById('title');
+            const messageArea = document.getElementById('message-area');
+            const gif = document.getElementById('main-gif');
+            const successImg = document.getElementById('success-img');
+            const btnGroup = document.getElementById('btn-group');
+            const backBtn = document.getElementById('backBtn');
+
+            title.innerHTML = "Perfect Choice! ❤️";
+            title.style.color = "#FFD700"; 
+            messageArea.innerHTML = "I'm so glad you said yes. I can't wait to make our Valentine's Day special.";
+            messageArea.style.color = "white";
+            
+            gif.classList.add('hidden');
+            btnGroup.classList.add('hidden');
+            
+            successImg.style.display = 'block';
+            document.body.style.background = "#1a1a1a"; 
+            document.body.style.color = "white";
+
+            // Make back button visible on dark background
+            backBtn.style.color = "#ccc";
+        }
+    </script>
+</body>
+</html>
